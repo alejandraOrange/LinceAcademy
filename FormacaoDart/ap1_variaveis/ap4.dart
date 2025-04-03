@@ -1,10 +1,10 @@
 import 'dart:math';
 
 void main() {
-  // Gera dois números inteiros aleatórios entre 1 e 100 (inclusive).
+  // Gera dois números inteiros aleatórios entre 1 e 100
   final Random random = Random();
-  final int valor1 = random.nextInt(100) + 1;
-  final int valor2 = random.nextInt(100) + 1;
+  final int valor1 = random.nextInt(100);
+  final int valor2 = random.nextInt(100);
 
   // Imprime os valores gerados.
   print("Valor 1: $valor1");

@@ -13,7 +13,7 @@ void main() {
   // Realiza a divisão de valor1 por valor2 e armazena o resultado em 'resultado'.
   final double resultado = valor1 / valor2;
 
-  // Extrai a parte inteira do resultado usando 'toInt()'.
+  // Extrai a parte inteira do resultado
   final int parteInteira = resultado.toInt();
 
   // Extrai a parte decimal do resultado subtraindo a parte inteira do resultado original.

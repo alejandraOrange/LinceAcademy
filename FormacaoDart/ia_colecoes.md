@@ -66,9 +66,14 @@ O operador '!' é usado para afirmar que uma variável nulável não é nula, Se
 # Traga a documentação dos métodos de variáveis inteiras. 
 
 abs() - Retorna o valor absoluto
+
 ceil() - Arredonda para cima
+
 floor() - Arredonda para baixo
+
 round()	- Arredonda para o inteiro mais próximo
+
 clamp(a, b) - Restringe o valor dentro do intervalo [a, b]
+
 toDouble() - Retorna o valor inteiro como um double.
 

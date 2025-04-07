@@ -20,26 +20,6 @@ O tipo "dynamic" desativa a verificação de tipo do Dart, o que pode levar a er
 
 Sempre inicialize suas variáveis no momento da declaração, se possível, Isso torna o código mais claro e reduz o risco de erros, Quando a inicialização não for possível, utilize a palavra chave "late", para indicar que a variavel será inicializada depois.
 
-## Variáveis temporárias redundantes:
-
-Muitas vezes, programadores declaram variáveis temporárias para armazenar valores intermediários que poderiam ser calculados diretamente.
-Exemplo ruim:
-
-'int valor1 = 10;
-int valor2 = 5;
-int soma = valor1 + valor2;
-int resultado = soma * 2;
-print(resultado);'
-
-Exemplo melhor:
-
-'''dart
-int valor1 = 10;
-int valor2 = 5;
-print((valor1 + valor2) * 2);'''
-
-Neste caso, a variável "soma" é desnecessária. O cálculo pode ser feito diretamente dentro da função "print".
-
 # Quais cuidados tomar quando crio variáveis com valor nulo trabalhando com dart? 
 
 ## Declare Variáveis Nuláveis Corretamente:
@@ -72,10 +52,15 @@ O operador '!' é usado para afirmar que uma variável nulável não é nula, Se
 
 # Quais métodos possuem as variáveis strings no dart?
 'length': Retorna o número de caracteres na string.
+
 'isEmpty': Retorna true se a string estiver vazia e false caso contrário.
+
 'isNotEmpty': Retorna true se a string não estiver vazia e false caso contrário.
+
 'contains'(Pattern other): Retorna true se a string contiver a sequência de caracteres especificada por other.
+
 'startsWith'(Pattern pattern): Retorna true se a string começar com a sequência de caracteres especificada por pattern.
+
 'endsWith'(Pattern pattern): Retorna true se a string terminar com a sequência de caracteres especificada por pattern.
 
 # Traga a documentação dos métodos de variáveis inteiras. 

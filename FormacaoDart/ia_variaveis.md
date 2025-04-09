@@ -1,4 +1,4 @@
-# Apontamentos:
+# Apontamentos :
 Com a ajuda da IA, obtive resultados bons em meu aprendizado. Consegui, otimizar meu código e compreender conceitos que no meu parecer são complexos de forma muito mais rápida e eficiente. A IA complementa as video-aulas do curso, me permitindo entender cada linha de código em detalhes.
 
 # Boas práticas em Dart na declaraçao de variaveis

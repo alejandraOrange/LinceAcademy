@@ -1,6 +1,6 @@
 ## Que práticas posso adotar para trazer uma melhor performance ao usar listas em dart? 
 
-**Tipagem Explícita:**
+**Tipagem Explícita :**
 
 • Ajuda a prevenir erros de tipo e torna o código mais fácil de entender.
 Exemplo: `List<String> nomes = ['Ana', 'Carlos', 'Maria'];`

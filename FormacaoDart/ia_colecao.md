@@ -1,30 +1,37 @@
 ## Que práticas posso adotar para trazer uma melhor performance ao usar listas em dart? 
 
-**Tipagem Explícita:**
+**Tipagem Explícita :**
+
 • Ajuda a prevenir erros de tipo e torna o código mais fácil de entender.
 Exemplo: `List<String> nomes = ['Ana', 'Carlos', 'Maria'];`
 
 **Imutabilidade Quando Necessário:**
+
 • Proteja suas listas contra modificações indesejadas usando `List.unmodifiable()`, que cria uma cópia imutável
 Exemplo: `final listaImutavel = List.unmodifiable(minhaLista);`
 
 ## Que práticas posso adotar para trazer uma melhor performance ao usar listas em dart? 
 
 **Métodos de Lista de Forma Eficiente:**
+
 • O Dart oferece uma variedade de métodos para manipular listas de forma eficiente.
 Exemplos: `map`, `where`, `fold`
 
 **Listas Grandes:**
+
 • Ao trabalhar com listas muito grandes, Use `Iterable` para evitar carregar todos os dados na memória de uma vez.
 
 
 ## O que não é recomendado fazer quando usado listas em dart?
 
 **Modificações durante itera a lista:**
-• Modificar listas durante a iteração torna o código mais complexo e difícil de entender, o que dificulta a 
+
+• Modificar listas durante a iteração torna o código mais complexo e difícil de entender, o que
+dificulta a 
 depuração e a manutenção, Tambem pode dar erro durante iteração.
 
 **Uso Excessivo de `insert` e `removeAt`:**
+
 • Os métodos `insert` e `removeAt` podem ser ineficientes em listas grandes, pois exigem o deslocamento de 
 todos os elementos após o índice modificado.
 

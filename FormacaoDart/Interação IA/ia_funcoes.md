@@ -87,7 +87,6 @@ void salvarUsuario(Usuario usuario) {
 
 ## É recomendado usar de dynamic nos parâmetros de uma função?
  
-
 ⚠️ Evite usar dynamic nos parâmetros de funções — a menos que realmente precise!
 
 Usar dynamic desativa a verificação de tipo em tempo de compilação, o que:

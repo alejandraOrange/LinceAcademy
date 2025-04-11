@@ -81,4 +81,3 @@ round()	- Arredonda para o inteiro mais próximo
 clamp(a, b) - Restringe o valor dentro do intervalo [a, b]
 
 toDouble() - Retorna o valor inteiro como um double.
-

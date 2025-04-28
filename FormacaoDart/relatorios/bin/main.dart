@@ -8,15 +8,15 @@ void main() async {
 
   print('''
   ===========================================
-  🌍 RELATÓRIOS CLIMÁTICOS GLOBAIS - MULTIUNIDADE
+  🌍 RELATÓRIOS CLIMÁTICOS 
   ===========================================
   ''');
 
   while (true) {
-    print('\nMENU PRINCIPAL');
-    print('1. Relatório de Temperatura (C° / F° / K)');
+    print('\nOLÁ, LEANDRO. QUE RELATÓRIO VOCÊ PRECISA? ');
+    print('1. Relatório de Temperatura');
     print('2. Relatório de Umidade');
-    print('3. Relatório de Vento (m/s / km/h / mph)');
+    print('3. Relatório de Vento ');
     print('4. Sair');
     print('------------------------------------------');
 

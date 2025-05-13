@@ -159,7 +159,7 @@ ListView.builder(
 )
 ```
 
-# 14. Diferenças entre ListView.builder e ListView.separated:
+## 14. Diferenças entre ListView.builder e ListView.separated:
 
 Característica	ListView.builder	ListView.separated
 Itens com separador	Não	Sim (permite separadores entre itens)
@@ -174,7 +174,7 @@ ListView.separated(
 )
 ```
 
-# 15. Como usar ListTile para criar itens em um ListView?
+## 15. Como usar ListTile para criar itens em um ListView?
 ```dart
 ListView(
   children: [
@@ -188,7 +188,7 @@ ListView(
 )
 ```
 
-# 16. Como tornar itens ListTile interativos (clicáveis)?
+## 16. Como tornar itens ListTile interativos (clicáveis)?
 Use o parâmetro onTap:
 
 ```dart
@@ -199,7 +199,7 @@ ListTile(
   },
 )
 ```
-# 17. Vantagens de usar ListTile em vez de widgets simples:
+## 17. Vantagens de usar ListTile em vez de widgets simples:
 Organização padronizada: leading, title, subtitle, trailing.
 
 Melhor layout responsivo para listas.

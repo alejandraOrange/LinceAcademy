@@ -1,119 +1,157 @@
 import 'package:flutter/material.dart';
 
-const Color darkBlue = Color.fromARGB(255, 18, 32, 47);
-
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: darkBlue),
+      title: 'Formulário Flutter',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: const FormularioPage(),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const RotaInicial(),
-        '/cor': (context) {
-          final cor = ModalRoute.of(context)!.settings.arguments as Color;
-          return RotaCor(cor: cor);
-        },
-      },
     );
   }
 }
 
-class ItensDaLista {
-  const ItensDaLista(this.cor, this.texto);
-
-  final Color cor;
-  final String texto;
-}
-
-class RotaInicial extends StatelessWidget {
-  const RotaInicial({super.key});
-
-  final core = const [
-    ItensDaLista(Colors.red, 'Vermelho'),
-    ItensDaLista(Colors.green, 'Verde'),
-    ItensDaLista(Colors.blue, 'Azul'),
-    ItensDaLista(Colors.purple, 'Roxo'),
-    ItensDaLista(Colors.orange, 'Laranja'),
-  ];
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Cor selecionada")),
-      body: ListView.builder(
-        itemCount: core.length,
-        padding: const EdgeInsets.all(8),
-        itemBuilder: (BuildContext context, int index) {
-          return SizedBox(
-            height: 50,
-            child: Center(child: CorItem(core[index].texto, core[index].cor)),
-          );
-        },
-      ),
-    );
-  }
-}
-
-class RotaCor extends StatelessWidget {
-  const RotaCor({super.key, required this.cor});
-
-  final Color cor;
+class FormularioPage extends StatefulWidget {
+  const FormularioPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Cor selecionada"),
-        backgroundColor: cor,
-      ),
-      body: Container(
-        color: cor,
-        child: const Center(
-          child: Text(
-            'Esta é a cor selecionada!',
-            style: TextStyle(fontSize: 24, color: Colors.white),
-          ),
-        ),
-      ),
-    );
-  }
+  State<FormularioPage> createState() => _FormularioPageState();
 }
 
-class CorItem extends StatelessWidget {
-  const CorItem(this.texto, this.cor, {super.key});
+class _FormularioPageState extends State<FormularioPage> {
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _nomeController = TextEditingController();
+  final TextEditingController _idadeController = TextEditingController();
+  bool _inativo = false;
 
-  final Color cor;
-  final String texto;
+  // Dados salvos
+  String? _nomeSalvo;
+  int? _idadeSalva;
+  bool _inativoSalvo = false;
 
-  bool _useWhiteText(Color background) {
-    return ThemeData.estimateBrightnessForColor(background) == Brightness.dark;
+  // Validação do campo Nome
+  String? _validarNome(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return 'Nome não pode ser vazio';
+    }
+    if (value.trim().length < 3) {
+      return 'Nome precisa ter pelo menos 3 letras';
+    }
+    if (!RegExp(r'^[A-Z]').hasMatch(value.trim())) {
+      return 'Nome deve começar com letra maiúscula';
+    }
+    return null;
+  }
+
+  // Validação do campo Idade
+  String? _validarIdade(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return 'Idade não pode ser vazia';
+    }
+    final idade = int.tryParse(value);
+    if (idade == null) {
+      return 'Idade deve ser um número válido';
+    }
+    if (idade < 18) {
+      return 'Idade deve ser maior ou igual a 18';
+    }
+    return null;
+  }
+
+  void _salvarFormulario() {
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        _nomeSalvo = _nomeController.text.trim();
+        _idadeSalva = int.parse(_idadeController.text.trim());
+        _inativoSalvo = _inativo;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _nomeController.dispose();
+    _idadeController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: cor,
-      child: InkWell(
-        onTap: () {
-          Navigator.of(context).pushNamed('/cor', arguments: cor);
-        },
-        child: SizedBox(
-          height: 56,
-          child: Center(
-            child: Text(
-              texto,
-              style: TextStyle(
-                color: _useWhiteText(cor) ? Colors.white : Colors.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
+    return Scaffold(
+      appBar: AppBar(title: const Text('Formulário com Validação')),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  TextFormField(
+                    controller: _nomeController,
+                    decoration: const InputDecoration(
+                      labelText: 'Nome',
+                      border: OutlineInputBorder(),
+                    ),
+                    validator: _validarNome,
+                  ),
+                  const SizedBox(height: 16),
+                  TextFormField(
+                    controller: _idadeController,
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                      labelText: 'Idade',
+                      border: OutlineInputBorder(),
+                    ),
+                    validator: _validarIdade,
+                  ),
+                  const SizedBox(height: 16),
+                  Row(
+                    children: [
+                      Checkbox(
+                        value: _inativo,
+                        onChanged: (value) {
+                          setState(() {
+                            _inativo = value ?? false;
+                          });
+                        },
+                      ),
+                      const Text('Inativo'),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: _salvarFormulario,
+                    child: const Text('Salvar'),
+                  ),
+                ],
               ),
             ),
-          ),
+            const SizedBox(height: 30),
+            if (_nomeSalvo != null && _idadeSalva != null)
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: _inativoSalvo ? Colors.grey[300] : Colors.green[300],
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Nome: $_nomeSalvo', style: const TextStyle(fontSize: 16)),
+                    Text('Idade: $_idadeSalva', style: const TextStyle(fontSize: 16)),
+                    Text('Status: ${_inativoSalvo ? "Inativo" : "Ativo"}',
+                        style: const TextStyle(fontSize: 16)),
+                  ],
+                ),
+              ),
+          ],
         ),
       ),
     );
